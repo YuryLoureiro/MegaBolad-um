@@ -15,7 +15,6 @@
   </form>
 </template>
 
-
 <template name="login">
 <h2>Login</h2>
 <form class="login">
@@ -25,7 +24,21 @@
 </form>
 </template>
 
-<template name="navigation">
+<template name="afterRegister">
+    <h2>Espaços</h2>
+    <ul>
+        <li><a> Advogado </a></li>
+        <li><a> Psicólogo </a></li>
+        <li><a> Terapeuta </a></li>
+        <li><a> Fisioterapeuta </a></li>
+    </ul>
+
+    <h5> 
+        <button>Vire um Host</button>
+    </h5>
+</template>
+
+<template name="navigation"> 
   <ul>
     <li><a href="{{pathFor route='register'}}">Cadastre-se</a></li>
     <li><a href="{{pathFor route='login'}}">Login</a></li>

@@ -8,7 +8,6 @@ Router.route('/', {
   template: 'navigation'
 });
 
-
 Router.route('/register', {
   name: 'register',
   template: 'register'
@@ -18,12 +17,16 @@ Router.route('/login', function () {
   this.render('login');
 });  
 
+Router.route('/afterRegister', function () {
+  this.render('afterRegister');
+});  
+
 Template.register.events({
   'submit form': function(event){
     event.preventDefault();
     var email = $('[name=email]').val();
     var password = $('[name=password]').val();
-    Router.go('home');
+    Router.go('afterRegister');
   Accounts.createUser({
             email: email,
             password: password
@@ -48,7 +51,13 @@ Template.login.events({
       event.preventDefault();
       var email = $('[name=email]').val();
       var password = $('[name=password]').val();
-      Meteor.loginWithPassword(email, password);
+      Meteor.loginWithPassword(email, password, function(error) {
+      if(error) {
+        Router.go('login');
+      } 
+      else {
+      Router.go('afterRegister');}
+    });
   }
 });
 
